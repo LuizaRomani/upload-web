@@ -22,7 +22,7 @@ export function UploadWidget() {
             width: 'max-content',
             height: 44,
             transition: {
-              type: 'inertia',
+              type: 'inertia', //spring, spring
             },
           },
           open: {
