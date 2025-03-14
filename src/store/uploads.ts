@@ -129,7 +129,6 @@ export const useUploads = create<UploadState, [['zustand/immer', never]]>(
         const upload: Upload = {
           name: file.name,
           file,
-
           status: 'progress',
           originalSizeInBytes: file.size,
           uploadSizeInBytes: 0,

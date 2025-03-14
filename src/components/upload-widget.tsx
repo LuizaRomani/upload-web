@@ -8,7 +8,6 @@ import { UploadWidgetUploadList } from './upload-widget-upload-list'
 
 export function UploadWidget() {
   const { isThereAnyPendingUploads } = usePendingUploads()
-
   const [isWidgetOpen, toggleWidgetOpen] = useCycle(false, true)
 
   return (
@@ -22,7 +21,7 @@ export function UploadWidget() {
             width: 'max-content',
             height: 44,
             transition: {
-              type: 'inertia', //spring, spring
+              type: 'inertia',
             },
           },
           open: {

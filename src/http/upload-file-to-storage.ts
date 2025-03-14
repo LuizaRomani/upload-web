@@ -2,7 +2,7 @@ import axios from 'axios'
 
 interface UploadFileToStorageParams {
   file: File
-  onProgress: (size: number) => void
+  onProgress: (sizeInBytes: number) => void
 }
 
 interface uploadFileToStorageOpts {
