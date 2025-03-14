@@ -47,8 +47,10 @@ export function UploadWidgetUploadItem({ upload, uploadId }: UploadWidgetUploadI
 
       <Progress.Root value={progress} data-status={upload.status} className="bg-zinc-800 rounded-full h-1 overflow-hidden group">
         <Progress.Indicator
-          className="bg-indigo-500 h-1 group-data-[status=success]:bg-green-400 group-data-[status=error]:bg-red-400 group-data-[status=canceled]:bg-yellow-400"
-          style={{ width: upload.status === 'progress' ? `${progress}%` : '100%' }}
+          className="bg-indigo-500 h-1 group-data-[status=success]:bg-green-400 group-data-[status=error]:bg-red-400 group-data-[status=canceled]:bg-yellow-400 transition-all"
+          style={{
+            width: upload.status === 'progress' ? `${progress}%` : '100%',
+          }}
         />
       </Progress.Root>
 

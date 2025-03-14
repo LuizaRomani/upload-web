@@ -15,11 +15,11 @@ function convertToWebp(filename: string): string {
   return `${filename.substring(0, lastDotIndex)}.webp`
 }
 
-export function compressImage({ file, maxHeight = Number.POSITIVE_INFINITY, maxWidth = Number.POSITIVE_INFINITY, quality = 1 }: CompressImageParams) {
+export function compressImage({ file, maxWidth = Number.POSITIVE_INFINITY, maxHeight = Number.POSITIVE_INFINITY, quality = 1 }: CompressImageParams) {
   const allowedFileTypes = ['image/jpg', 'image/jpeg', 'image/png', 'image/webp']
 
   if (!allowedFileTypes.includes(file.type)) {
-    throw new Error('Image format not supported.')
+    throw new Error('Image format not supported')
   }
 
   return new Promise<File>((resolve, reject) => {
@@ -30,6 +30,7 @@ export function compressImage({ file, maxHeight = Number.POSITIVE_INFINITY, maxW
 
       compressed.onload = () => {
         const canvas = document.createElement('canvas')
+
         let width = compressed.width
         let height = compressed.height
 
@@ -47,13 +48,16 @@ export function compressImage({ file, maxHeight = Number.POSITIVE_INFINITY, maxW
 
         canvas.width = width
         canvas.height = height
+
         const context = canvas.getContext('2d')
 
         if (!context) {
-          throw new Error('Failed to get canvas context')
+          reject(new Error('Failed to get canvas context'))
+          return
         }
 
         context.drawImage(compressed, 0, 0, width, height)
+
         canvas.toBlob(
           blob => {
             if (!blob) {
@@ -72,6 +76,7 @@ export function compressImage({ file, maxHeight = Number.POSITIVE_INFINITY, maxW
           quality
         )
       }
+
       compressed.src = event.target?.result as string
     }
 
